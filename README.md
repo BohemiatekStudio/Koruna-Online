@@ -1,2 +1,3 @@
 # Koruna-Online
-MMORPG Browser Game. Czech 
+MMORPG Browser Game
+

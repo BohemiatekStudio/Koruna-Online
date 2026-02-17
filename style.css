@@ -1,19 +1,27 @@
+/* Reset základních okrajů */
 body {
     margin: 0;
     padding: 0;
-    background-color: #808080;
+
+    /* Pozadí stránky */
+    background-image: url("assets/ui/bckgrnd.png");
+    background-size: cover;        /* vyplní celou obrazovku */
+    background-position: center;   /* vystředí obrázek */
+    background-repeat: no-repeat;  /* nebude se opakovat */
+    background-attachment: fixed;  /* pevné pozadí */
 }
 
+/* HUD dole na středu */
 .hud {
     position: fixed;
     bottom: 0;
-    left: 50%;              /* posune začátek na střed */
-    transform: translateX(-50%); /* vrátí ho zpět o polovinu šířky */
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 9999;
 }
 
 .hud img {
     display: block;
-    max-width: 100%;  /* aby nepřesahoval obrazovku */
+    max-width: 100%;
     height: auto;
 }

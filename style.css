@@ -7,12 +7,13 @@ body {
 .hud {
     position: fixed;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;              /* posune začátek na střed */
+    transform: translateX(-50%); /* vrátí ho zpět o polovinu šířky */
     z-index: 9999;
 }
 
 .hud img {
-    width: 100%;
     display: block;
+    max-width: 100%;  /* aby nepřesahoval obrazovku */
+    height: auto;
 }

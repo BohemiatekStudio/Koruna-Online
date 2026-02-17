@@ -1,17 +1,28 @@
-/* Reset základních okrajů */
 body {
     margin: 0;
     padding: 0;
-
-    /* Pozadí stránky */
-    background-image: url("assets/ui/bckgrnd.png");
-    background-size: cover;        /* vyplní celou obrazovku */
-    background-position: center;   /* vystředí obrázek */
-    background-repeat: no-repeat;  /* nebude se opakovat */
-    background-attachment: fixed;  /* pevné pozadí */
+    overflow: hidden; /* zruší scroll celé stránky */
 }
 
-/* HUD dole na středu */
+/* Herní plocha */
+.game-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* umožní posouvání prstem */
+}
+
+/* Mapa */
+.map {
+    display: block;
+    margin: auto; /* vycentruje při načtení */
+    min-width: 150%; /* větší než obrazovka */
+    height: auto;
+}
+
+/* HUD */
 .hud {
     position: fixed;
     bottom: 0;
@@ -24,4 +35,4 @@ body {
     display: block;
     max-width: 100%;
     height: auto;
-}
+}.

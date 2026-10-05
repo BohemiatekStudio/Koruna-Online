@@ -1,0 +1,250 @@
+/* ================================================================= */
+/* 1. ZÁKLADNÍ NASTAVENÍ A RESET */
+/* ================================================================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    font-family: Arial, sans-serif;
+}
+
+/* Hlavní kontejner hry rozdělený na 2 části */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+
+/* ================================================================= */
+/* 2. HERNÍ OBRAZOVKA (MAPA) */
+/* ================================================================= */
+#game-screen {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background-color: #0d0c0b;
+    overflow: hidden;
+}
+
+
+/* ================================================================= */
+/* 3. SPODNÍ PANEL (HUD) */
+/* ================================================================= */
+#bottom-bar {
+    height: 20vh;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    background-image: url('../assets/images/hud/wall.png');
+    background-repeat: repeat;
+    background-size: 150px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border-top: none;
+    overflow: visible;
+}
+
+#bottom-bar::before {
+    content: '';
+    position: absolute;
+    top: -70px;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    background-image: url('../assets/images/hud/wall-top.png');
+    background-repeat: repeat-x;
+    background-size: auto 80px;
+    z-index: 15;
+    pointer-events: none;
+}
+
+
+/* ================================================================= */
+/* 4. JEDNOTLIVÉ PANELY VE SPODNÍ LIŠTĚ */
+/* ================================================================= */
+.panel {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    border: 1px solid #33291e;
+}
+
+#chat-panel {
+    flex: 2.5;
+    margin-right: 8px;
+    background-image: url('../assets/images/hud/wall-chat.png');
+    background-size: 95% 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+}
+
+#char-panel {
+    flex: 1.5;
+    position: relative;
+    margin-right: 8px;
+    background-image: url('../assets/images/hud/wall-player.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Kontejner portrétu – zmenšený na cca 70% a vycentrovaný uvnitř rámečku */
+.hud-portrait-container {
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#stat-panel {
+    flex: 3.0;
+    margin-right: 8px;
+    background-image: url('../assets/images/hud/wall-stat.png');
+    background-size: 95% 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styl pro vnitřek stat panelu, aby se text nerozbil */
+.stat-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 12px;
+    box-sizing: border-box;
+}
+
+.hud-title-row {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 4px;
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.hud-content-columns {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    gap: 10px;
+}
+
+.hud-left-side, .hud-right-side {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#func-panel {
+    flex: 2.8;
+    background-image: none;
+    background-size: 95% 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+
+/* ================================================================= */
+/* 5. TLAČÍTKA VE FUNKČNÍM PANELU */
+/* ================================================================= */
+#btn-hero-func {
+    grid-column: 1;
+    grid-row: 1;
+    background-image: url('../assets/images/hud/icon-player.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+#btn-inventory-func {
+    grid-column: 3;
+    grid-row: 1;
+    background-image: url('../assets/images/hud/icon-inventory.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+#btn-messages-func {
+    grid-column: 4;
+    grid-row: 1;
+    background-image: url('../assets/images/hud/icon-message.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+#btn-discord-func {
+    grid-column: 5;
+    grid-row: 2;
+    background-image: url('../assets/images/hud/icon-discord.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}

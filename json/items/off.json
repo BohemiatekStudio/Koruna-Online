@@ -1,0 +1,16 @@
+[
+    {
+        "id": "off_torch",
+        "name": "Dřevěná pochodeň",
+        "type": "offhand",
+        "slot": "off",
+        "rarity": "common",
+        "stats": {
+            "dmg": 1,
+            "dex": 1,
+            "luck": 1
+        },
+        "price": 30,
+        "description": "Hřeje, svítí a občas s ní lze někomu opálit vousy."
+    }
+]

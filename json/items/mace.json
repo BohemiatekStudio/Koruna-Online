@@ -1,0 +1,16 @@
+[
+    {
+        "id": "mace_klacek",
+        "name": "Klacek",
+        "type": "weapon",
+        "slot": "main",
+        "rarity": "common",
+        "stats": {
+            "dmgMin": 1,
+            "dmgMax": 3,
+            "str": 1
+        },
+        "price": 15,
+        "description": "Ohlodaný klacek. Sice to moc nepíchá, ale uštědřit s tím ránu se dá."
+    }
+]

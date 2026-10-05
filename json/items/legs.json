@@ -1,0 +1,15 @@
+[
+  {
+    "id": "legs_hadry",
+    "name": "Potrhané kalhoty",
+    "type": "armor",
+    "slot": "legs",
+    "rarity": "common",
+    "stats": {
+      "armor": 1
+    },
+    "price": 5,
+    "icon": "assets/images/items/legs/hadrykalhoty.png",
+    "description": "Staré a děravé kalhoty, které stěží zakrývají to nejnutnější."
+  }
+]

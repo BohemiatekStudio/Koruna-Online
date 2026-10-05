@@ -1,0 +1,15 @@
+[
+  {
+    "id": "chest_hadry",
+    "name": "Potrhané hadry",
+    "type": "armor",
+    "slot": "chest",
+    "rarity": "common",
+    "stats": {
+      "armor": 1
+    },
+    "price": 5,
+    "icon": "assets/images/items/chest/hadryzbroj.png",
+    "description": "Staré a potrhané hadry, které sotva drží pohromadě, ale lepší než nic."
+  }
+]

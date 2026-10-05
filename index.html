@@ -2,19 +2,202 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koruna Online</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    
+    <!-- ========================================== -->
+    <!-- CSS STYLY -->
+    <!-- ========================================== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/inventory.css">
+    <link rel="stylesheet" href="css/pedmenu.css">
+    <link rel="stylesheet" href="css/player.css">
 </head>
-
 <body>
+    <div id="game-container">
+        
+        <!-- HERNÍ OBRAZOVKA (POUZE MAPA) -->
+        <div id="game-screen">
+            <div id="map"></div>
+        </div>
 
-    <div class="game-area">
-        <img src="assets/ui/bckgrnd.png" class="map">
+        <!-- OKNO HRDINY -->
+        <div id="character-window" class="character-window" style="display: none;">
+            <div id="character-window-header" class="window-header">
+                <span id="char-window-title">Hrdina - Úroveň 1</span>
+                <button id="close-char-btn" class="close-btn">X</button>
+            </div>
+            
+            <div class="window-content-flex">
+                <!-- LEVÝ SLOUPEC: Paperdoll, výbava, zbraně, mount a batohy -->
+                <div class="char-left-side">
+                    <div class="paperdoll-container">
+                        <!-- Levý sloupec slotů -->
+                        <div class="equipment-column">
+                            <div class="slot" data-type="equipment" data-slot="head">Hlava</div>
+                            <div class="slot" data-type="equipment" data-slot="neck">Krk</div>
+                            <div class="slot" data-type="equipment" data-slot="shoulder">Ramena</div>
+                            <div class="slot" data-type="equipment" data-slot="back">Záda</div>
+                            <div class="slot" data-type="equipment" data-slot="chest">Hrudník</div>
+                            <div class="slot" data-type="equipment" data-slot="shirt">Košile</div>
+                            <div class="slot" data-type="equipment" data-slot="tabard">Tabard</div>
+                            <div class="slot" data-type="equipment" data-slot="wrist">Zápěstí</div>
+                        </div>
+
+                        <!-- Silueta / Portrét hrdiny -->
+                        <div class="character-portrait-wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+                            <div class="character-portrait" style="position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                <img id="char-window-portrait-eyes" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;" alt="Portrét hrdiny">
+                            </div>
+                            <button id="btn-change-appearance" style="background-color: #d4af37; color: #2c1e12; border: 2px solid #8c6f3d; font-family: inherit; font-size: 11px; font-weight: bold; padding: 5px 10px; border-radius: 4px; cursor: pointer;">Změnit vzhled</button>
+                        </div>
+
+                        <!-- Pravý sloupec slotů -->
+                        <div class="equipment-column">
+                            <div class="slot" data-type="equipment" data-slot="hands">Rukavice</div>
+                            <div class="slot" data-type="equipment" data-slot="waist">Pás</div>
+                            <div class="slot" data-type="equipment" data-slot="legs">Nohy</div>
+                            <div class="slot" data-type="equipment" data-slot="feet">Boty</div>
+                            <div class="slot" data-type="equipment" data-slot="ring1">Prsten 1</div>
+                            <div class="slot" data-type="equipment" data-slot="ring2">Prsten 2</div>
+                            <div class="slot" data-type="equipment" data-slot="trinket1">Trinket 1</div>
+                            <div class="slot" data-type="equipment" data-slot="trinket2">Trinket 2</div>
+                        </div>
+                    </div>
+
+                    <!-- Spodní řada: Zbraně + Mount -->
+                    <div class="bottom-equipment-row">
+                        <div class="slot" data-type="equipment" data-slot="main">Hlavní</div>
+                        <div class="slot" data-type="equipment" data-slot="off">Vedlejší</div>
+                        <div class="slot" data-type="equipment" data-slot="ranged">Střelná</div>
+                        <div class="equipment-divider" style="width: 2px; height: 36px; background: #8c6f3d; margin: 0 4px;"></div>
+                        <div class="slot" data-type="equipment" data-slot="mount">Mount</div>
+                        <div class="slot" data-type="equipment" data-slot="pet">Mazlíček</div>
+                    </div>
+
+                    <!-- Speciální řada: 3 Batohy -->
+                    <div class="bags-row">
+                         <span class="bags-label">Batohy:</span>
+                         <div class="slot bag-slot" data-type="equipment" data-slot="bag1">Batoh 1</div>
+                         <div class="slot bag-slot" data-type="equipment" data-slot="bag2">Batoh 2</div>
+                         <div class="slot bag-slot" data-type="equipment" data-slot="bag3">Batoh 3</div>
+                    </div>
+                </div>
+
+                <!-- PRAVÝ SLOUPEC: Podrobné statistiky -->
+                <div class="char-right-side">
+                    <div id="char-detailed-stats" class="detailed-stats"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OKNO INVENTÁŘE -->
+        <div id="inventory-window" class="inventory-window" style="display: none;">
+            <div id="inventory-header" class="window-header">
+                <span>Inventář</span>
+                <button id="close-inv" class="close-btn">X</button>
+            </div>
+            <div class="window-content">
+                <div class="inventory-grid">
+                    <div class="slot">1</div><div class="slot">2</div><div class="slot">3</div><div class="slot">4</div><div class="slot">5</div>
+                    <div class="slot">6</div><div class="slot">7</div><div class="slot">8</div><div class="slot">9</div><div class="slot">10</div>
+                    <div class="slot">11</div><div class="slot">12</div><div class="slot">13</div><div class="slot">14</div><div class="slot">15</div>
+                    <div class="slot">16</div><div class="slot">17</div><div class="slot">18</div><div class="slot">19</div><div class="slot">20</div>
+                </div>
+                <div class="inventory-money-row" style="display: flex; justify-content: center; gap: 25px; margin-top: 10px; padding: 6px; background: rgba(0,0,0,0.3); border-radius: 4px; font-weight: bold;">
+                    <span class="currency-gold" id="inv-gold">0</span>
+                    <span class="currency-silver" id="inv-silver">0</span>
+                    <span class="currency-bronze" id="inv-bronze">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PEDMENU WINDOW -->
+        <div id="pedmenu-window" class="pedmenu-window" style="display: none; position: absolute; top: 100px; left: 300px; z-index: 10000; background: #1a1612; border: 2px solid #5a4531; border-radius: 8px; width: 400px; padding: 15px; color: #d4af37;">
+            <div class="window-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #33291e; padding-bottom: 8px; margin-bottom: 12px;">
+                <span style="font-weight: bold; font-size: 16px;">Úprava vzhledu postavy</span>
+                <button id="close-pedmenu-btn" class="close-btn" style="background: #5a4531; color: #fff; border: none; padding: 2px 8px; cursor: pointer; border-radius: 4px;">X</button>
+            </div>
+            <div class="pedmenu-content" style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="pedmenu-preview-container" style="width: 150px; height: 150px; margin: 0 auto; background: #0d0c0b; border: 2px solid #33291e; border-radius: 6px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                    <img id="preview-eyes" src="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;" alt="Oči">
+                </div>
+                <div class="pedmenu-control-group" style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px;">
+                    <span>Oči:</span>
+                    <div style="display: flex; gap: 6px;">
+                        <button class="pedmenu-prev" data-category="eyes" style="background: #33291e; color: #d4af37; border: 1px solid #5a4531; cursor: pointer; padding: 2px 8px;">&lt;</button>
+                        <span id="label-eyes" style="width: 30px; text-align: center;">1</span>
+                        <button class="pedmenu-next" data-category="eyes" style="background: #33291e; color: #d4af37; border: 1px solid #5a4531; cursor: pointer; padding: 2px 8px;">&gt;</button>
+                    </div>
+                </div>
+                <button id="pedmenu-randomize" style="background-color: #5a4531; color: #d4af37; border: 1px solid #8c6f3d; font-weight: bold; padding: 8px; border-radius: 4px; cursor: pointer;">Náhodný výběr</button>
+                <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px;">
+                    <button id="pedmenu-save" style="background-color: #2e8b57; color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: bold;">Uložit</button>
+                    <button id="pedmenu-cancel" style="background-color: #a04040; color: #fff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-weight: bold;">Zrušit</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SPODNÍ KAMENNÁ LIŠTA (HUD) -->
+        <div id="bottom-bar">
+            <!-- Chat panel -->
+            <div id="chat-panel" class="panel">//CHAT//</div>
+            
+            <!-- Panel hrdiny -->
+            <div id="char-panel" class="panel">
+                <div class="hud-portrait-container">
+                    <img id="hud-portrait-eyes" src="" style="width: 100%; height: 100%; object-fit: contain;" alt="HUD Portrét">
+                </div>
+            </div>
+            
+            <!-- Hlavní stat panel - OPRAVENÁ STRUKTURA -->
+            <div id="stat-panel" class="panel">
+                <div class="stat-content-wrapper" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 4px 8px; box-sizing: border-box;">
+                    <!-- Horní řádek: Jméno a level -->
+                    <div class="hud-title-row" style="font-size: 13px; text-align: center; margin-bottom: 4px; color: #d4af37;">
+                        Nováček • Jan Zhoř • Lvl 1
+                    </div>
+                    <!-- Obsah rozdělený na sloupce -->
+                    <div class="hud-content-columns" style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <div class="hud-left-side" style="display: flex; flex-direction: column; gap: 2px;">
+                            <div>Životy: <span class="stat-hp">100/100</span></div>
+                            <div>Energie: <span class="stat-en">50/50</span></div>
+                            <div>Zbroj: <span class="stat-armor">2</span></div>
+                            <div>Poškození: <span class="stat-dmg">1-2</span></div>
+                        </div>
+                        <div class="hud-right-side" style="display: flex; flex-direction: column; gap: 2px;">
+                            <div>Síla: <span class="stat-str">1</span></div>
+                            <div>Obratnost: <span class="stat-agi">1</span></div>
+                            <div>Výdrž: <span class="stat-sta">1</span></div>
+                            <div>Moudrost: <span class="stat-int">1</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Funkční panel -->
+            <div id="func-panel" class="panel">
+                <button id="btn-hero-func" class="func-btn" title="Hrdina"></button>
+                <button id="btn-inventory-func" class="func-btn" title="Inventář"></button> 
+                <button id="btn-messages-func" class="func-btn" title="Zprávy"></button>
+                <button id="btn-discord-func" class="func-btn" title="Discord" onclick="window.open('https://discord.gg/tvujodkaz', '_blank')"></button>
+            </div>
+        </div>
+
     </div>
 
-    <div class="hud">
-        <img src="assets/ui/hud.png" alt="HUD">
-    </div>
+    <div id="item-tooltip"></div>
 
+    <script src="js/leaflet.js"></script>
+    <script src="js/economy.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/dragdrop.js"></script>
+    <script src="js/items.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/pedmenu.js"></script>
 </body>
 </html>

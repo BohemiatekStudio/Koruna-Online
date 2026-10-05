@@ -1,0 +1,12 @@
+[{
+    "id": "falcon",
+    "name": "Bystrozraký sokol",
+    "rarity": "epic",
+    "type": "pet",
+    "stats": {
+        "agi": 5,
+        "dmg": 1
+    },
+    "price": 5000,
+    "flavor_text": "Když ti nakálí na rameno, je to prý štěstí. Když ti vyškrábne oko, protože sis spletl krmení s myší, už to taková výhra není."
+}]

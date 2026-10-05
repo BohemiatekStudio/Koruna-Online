@@ -1,0 +1,300 @@
+/* ================================================================= */
+/* OKNO HRDINY A INVENTÁŘ (player.css) */
+/* ================================================================= */
+
+/* Hlavní vyskakovací okno hrdiny */
+#character-window {
+    position: absolute;
+    top: 50px;
+    left: 80px;
+    width: 630px;
+    background: #1a1714;
+    border: 2px solid #8c6f3d;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9);
+    color: #e0d5c1;
+    z-index: 9998 !important;
+    font-size: 12px;
+    user-select: none;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Horní lišta okna (přetahování) */
+.window-header {
+    background: #2b2219;
+    padding: 6px 10px;
+    font-weight: bold;
+    color: #d4af37;
+    border-bottom: 1px solid #8c6f3d;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -10px -10px 10px -10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+/* Zavírací tlačítko [X] */
+.close-btn {
+    background: #5a1818;
+    color: #fff;
+    border: 1px solid #8c3d3d;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.close-btn:hover {
+    background: #8c1d1d;
+}
+
+/* Rozvržení do dvou sloupců */
+.window-content-flex {
+    display: flex;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+/* LEVÁ STRANA - Paperdoll a výbava */
+.char-left-side {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.paperdoll-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.equipment-column {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Silueta postavy */
+.character-portrait {
+    width: 100px;
+    height: 140px;
+    background: #0d0c0b;
+    border: 2px solid #5a4531;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portrait-placeholder {
+    color: #4a3c2c;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Sloty na předměty */
+.slot {
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #5a4531;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #8c6f3d;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.slot:hover {
+    border-color: #d4af37;
+    cursor: pointer;
+}
+
+/* Spodní řady pro zbraně a batohy */
+.bottom-equipment-row {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.bags-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px solid #33291e;
+    font-size: 11px;
+}
+
+.bags-label {
+    color: #8c6f3d;
+}
+
+/* PRAVÁ STRANA - Detailní panel statistik */
+.char-right-side {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #33291e;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    box-sizing: border-box;
+}
+
+.detailed-stats {
+    line-height: 1.4;
+}
+
+.stat-group-title {
+    color: #d4af37;
+    font-weight: bold;
+    border-bottom: 1px solid #33291e;
+    margin-bottom: 6px;
+    padding-bottom: 2px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+    color: #c2b59b;
+}
+
+/* Okno inventáře */
+#inventory-window {
+    position: absolute;
+    top: 50px;
+    left: 730px;
+    width: 280px;
+    background: #1a1714;
+    border: 2px solid #8c6f3d;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.9);
+    color: #e0d5c1;
+    z-index: 9999 !important;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 8px;
+}
+
+/* Měna a barvy */
+.currency-gold { color: #ffd700; font-weight: bold; }
+.currency-silver { color: #c0c0c0; font-weight: bold; }
+.currency-bronze { color: #cd7f32; font-weight: bold; }
+.currency-garnet { color: #ff3333; font-weight: bold; }
+
+/* Tlačítka v panelu FUNKcí */
+.func-btn {
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.func-btn:hover {
+    filter: brightness(1.2);
+}
+
+/* ================================================================= */
+/* HERNÍ TOOLTIPY (POPISKY PŘEDMĚTŮ) */
+/* ================================================================= */
+#item-tooltip {
+    position: absolute;
+    display: none;
+    background: #ebd6a5;
+    color: #2b2118;
+    border: 2px solid #5a4531;
+    border-radius: 6px;
+    padding: 10px;
+    width: 230px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+}
+
+#item-tooltip.rarity-common { border-color: #6c757d; }
+#item-tooltip.rarity-common .tooltip-name { color: #5a6268; }
+
+#item-tooltip.rarity-uncommon { border-color: #2e8b57; }
+#item-tooltip.rarity-uncommon .tooltip-name { color: #1e6b3f; }
+
+#item-tooltip.rarity-rare { border-color: #0070dd; }
+#item-tooltip.rarity-rare .tooltip-name { color: #0056b3; }
+
+#item-tooltip.rarity-epic { border-color: #a335ee; }
+#item-tooltip.rarity-epic .tooltip-name { color: #7b1fa2; }
+
+#item-tooltip.rarity-legendary { border-color: #ff8c00; }
+#item-tooltip.rarity-legendary .tooltip-name { color: #d97706; }
+
+#item-tooltip.rarity-mythic { border-color: #dc3545; }
+#item-tooltip.rarity-mythic .tooltip-name { color: #b71c1c; }
+
+.tooltip-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.tooltip-type {
+    color: #5a4d3f;
+    font-size: 11px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #c2b092;
+    padding-bottom: 4px;
+}
+
+.tooltip-stats {
+    color: #2b2118;
+    font-weight: bold;
+    margin: 6px 0;
+    padding: 4px 0;
+    border-top: 1px dashed #c2b092;
+    border-bottom: 1px dashed #c2b092;
+}
+
+.tooltip-desc {
+    color: #1a1a1a;
+    font-style: italic;
+    font-size: 11px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.tooltip-price {
+    font-size: 11px;
+    color: #5a4531;
+    text-align: right;
+    border-top: 1px solid #c2b092;
+    padding-top: 4px;
+    font-weight: bold;
+}

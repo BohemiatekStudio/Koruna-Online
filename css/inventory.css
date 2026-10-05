@@ -1,0 +1,76 @@
+/* Posuvné okno inventáře ve stejném stylu jako charakter */
+#inventory-window {
+    position: absolute;
+    top: 100px;
+    left: 450px;
+    width: 310px; /* Zvětšeno, aby se 5 větších slotů vedle sebe pohodlně vešlo */
+    background: #1a1714;
+    border: 2px solid #8c6f3d;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    color: #e0d5c1;
+    z-index: 9999 !important; /* Zvýšeno a vynuceno, aby bylo vždy úplně nahoře */
+    font-size: 12px;
+    user-select: none;
+}
+
+/* Záhlaví okna (přetahování) */
+#inventory-window .window-header {
+    background: #2b2219;
+    padding: 6px 10px;
+    font-weight: bold;
+    color: #d4af37;
+    border-bottom: 1px solid #8c6f3d;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Zavírací tlačítko [X] */
+#inventory-window .close-btn {
+    background: #5a1818;
+    color: #fff;
+    border: 1px solid #8c3d3d;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+#inventory-window .close-btn:hover {
+    background: #8c1d1d;
+}
+
+/* Obsah okna – nyní jako sloupec (pod sebou) */
+#inventory-window .window-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #13110e;
+}
+
+/* Mřížka 5 sloupců x 4 řádky */
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px; /* Mírně zvětšena mezera mezi sloty */
+}
+
+.inventory-grid .slot {
+    width: 48px;  /* Zvětšeno z 36px na 48px */
+    height: 48px; /* Zvětšeno z 36px na 48px */
+}
+
+/* Řádek s penězi pod mřížkou */
+.inventory-money-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 10px;
+    padding: 6px 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    font-weight: bold;
+}

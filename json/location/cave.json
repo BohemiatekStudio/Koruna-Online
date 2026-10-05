@@ -1,0 +1,16 @@
+{
+  "locations": [
+    {
+      "id": "dul_1",
+      "name": "Železný důl",
+      "type": "mine",
+      "coords": [1000, 0]
+    },
+    {
+      "id": "jeskyne_1",
+      "name": "Křišťálová jeskyně",
+      "type": "cave",
+      "coords": [0, 1000]
+    }
+  ]
+}

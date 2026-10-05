@@ -1,0 +1,10 @@
+{
+  "locations": [
+    {
+      "id": "les",
+      "name": "Les",
+      "type": "forest",
+      "coords": [500, 0]
+    }
+  ]
+}

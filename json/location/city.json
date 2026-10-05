@@ -1,0 +1,10 @@
+{
+  "locations": [
+    {
+      "id": "mesto",
+      "name": "Město",
+      "type": "city",
+      "coords": [0, 0]
+    }
+  ]
+}
